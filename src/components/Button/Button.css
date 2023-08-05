@@ -1,0 +1,24 @@
+button{
+    background: none;
+    outline: none;
+    border: none;
+    font-family: var(--mulish-font);
+}
+
+.button-primary {
+    background-color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 20px auto;
+    width: 112px;
+    height: 36px;
+    cursor: pointer;
+    transition: all 0.150s ease;
+}
+
+.button-primary:hover{
+    transform: translate(-1px,-1px);
+}
+.button-primary:active{
+    transform: translate(1px,1px);
+}
