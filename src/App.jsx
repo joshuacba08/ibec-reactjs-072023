@@ -1,15 +1,14 @@
 import './App.css'
-import Button from './components/Button/Button'
+import ItemCount from './components/ItemCount/ItemCount'
+
+
 
 function App() {
 
 
   return (
     <>
-      <Button title="Action 1" />
-      <Button title="Action 2" />
-      <Button title="Action 3" />
-      <Button title="Action 4" />
+      <ItemCount initial={1} stock={10} />
     </>
   )
 }
