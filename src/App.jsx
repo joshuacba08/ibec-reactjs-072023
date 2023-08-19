@@ -1,5 +1,5 @@
 import './App.css'
-import ItemCount from './components/ItemCount/ItemCount'
+import ItemContainer from './components/ItemContainer/ItemContainer'
 
 
 
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <ItemCount initial={1} stock={10} />
+      <ItemContainer />
     </>
   )
 }
