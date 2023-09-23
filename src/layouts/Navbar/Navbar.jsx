@@ -1,3 +1,4 @@
+import { NavLink  } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
 import CartWidget from "../../components/CartWidget/CartWidget";
 import './Navbar.css';
@@ -10,14 +11,22 @@ const Navbar = () => {
     return(
         <header className="navbar-container">
 
+            <nav className="navbar-container__nav">
+                <NavLink to="/" >Inicio</NavLink>
+                <NavLink to="/products">Productos</NavLink>
+                <span>Contacto</span>
+            </nav>
+
             <div className="menu-icon">
                 <MdMenu size={24} />
                 <span>Menu</span>
             </div>
 
-            <img src={brand} alt="" />
+            <img className="logo" src={brand} alt="" />
 
-            <CartWidget />
+            <div className="cart-widget-container">
+                <CartWidget />
+            </div>
 
         </header>
     )

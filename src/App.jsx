@@ -1,6 +1,8 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
-import ItemContainer from './components/ItemContainer/ItemContainer'
 import Navbar from './layouts/Navbar/Navbar'
+import Home from "./pages/Home/Home";
+import Products from "./pages/Products/Products";
 
 
 
@@ -8,11 +10,16 @@ import Navbar from './layouts/Navbar/Navbar'
 function App() {
 
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <ItemContainer />
+
+      <Routes> 
+        <Route path="/" element={ <Home /> }  />
+        <Route path="/products" element={ <Products /> }  />
+      </Routes>
       
-    </>
+      {/* Aca iría un footer */}
+    </BrowserRouter>
   )
 }
 

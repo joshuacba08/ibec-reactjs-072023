@@ -1,13 +1,51 @@
 .navbar-container{
     padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    gap: 30px;
     align-items: center;
 }
 
 .menu-icon{
+    justify-self: start;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
+}
+
+.cart-widget-container{
+    justify-self: end;
+}
+
+.navbar-container__nav{
+    display: none;
+    justify-self: start;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-container__nav a{
+    text-decoration: none;
+    color: var(--just-white);
+}
+
+.navbar-container__nav a.active{
+    color: var(--primary-color);
+}
+
+.logo{
+    justify-self: center;
+}
+
+
+
+@media screen and (min-width: 800px){
+    .menu-icon{
+        display: none;
+    }
+    .navbar-container__nav{
+        display: flex;
+    }
 }
