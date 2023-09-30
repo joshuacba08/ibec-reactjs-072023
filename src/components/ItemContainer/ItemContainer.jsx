@@ -6,10 +6,10 @@ import RingLoader from "react-spinners/RingLoader";
 import './ItemContainer.css';
 import { useEffect, useState } from "react";
 
-function ItemContainer() {
+function ItemContainer({ category }) {
 
     // 1. Definir mi endpoint o url base para solicitar la lista productos
-    const url = "https://run.mocky.io/v3/a5b866d9-cf81-4a7b-9449-bc9bd1feaf8f";
+    const url = "https://run.mocky.io/v3/1ca302e2-1551-499a-8cf3-9db2e1f2cf22";
 
     // 2. Definir un estado para guardar los productos que me devuelve la API
     const [ products, setProducts ] = useState([]);
@@ -25,16 +25,31 @@ function ItemContainer() {
         }
     }
 
+    const getProductsByCategory = async () => {
+        try{
+            const response = await fetch(url);
+            const data = await response.json();
+            const filteredProducts = data.filter( (prod)=> prod.type.toLowerCase() === category )
+            setProducts(filteredProducts);
+        }catch(err){
+            console.error(err);
+        }
+    }
+
     //4. defino un useEffect que se ejecute cuando se monte el componente y a su vez invoque a la función getProducts
     useEffect(()=>{
         /* Bloque de código que quiero que se ejecute a penas se monte el componente */        
-        getProducts();
+        if(category){
+            getProductsByCategory();
+        }else{
+            getProducts();
+        }
 
         // fetch(url)
         //     .then( (response)=> response.json() )
         //     .then( (data) => setProducts(data) )
         //     .catch( (err)=> console.error(err) )
-    }, []) // Este array se conoce como array de dependencias, y si está vacío el useEffect se ejecuta una sola vez, cuando se monta el componente.
+    }, [category]) // Este array se conoce como array de dependencias, y si está vacío el useEffect se ejecuta una sola vez, cuando se monta el componente.
   
     return (<div className="products-container">
 

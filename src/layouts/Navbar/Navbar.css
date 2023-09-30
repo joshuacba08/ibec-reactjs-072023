@@ -39,6 +39,24 @@
     justify-self: center;
 }
 
+.links-group{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.links-group .links-group__menu{
+    position: absolute;
+    padding: 10px;
+    bottom: -70px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100px;
+    background-color: var(--body-bg-color-light);
+    border-radius: 3px;
+}
+
 
 
 @media screen and (min-width: 800px){

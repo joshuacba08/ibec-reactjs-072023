@@ -4,6 +4,8 @@
 
 .product-card__image {
   width: 320px;
+  height: 300px;
+  object-fit: contain;
 }
 
 .product-card__name {
