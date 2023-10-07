@@ -1,6 +1,7 @@
 // Vamos a crear un componente inteligente que se encargue de traer los datos de la API y de renderizar el componente ItemList.
 import Item from "../Item/Item";
 import RingLoader from "react-spinners/RingLoader";
+import environments from "../../environments/environments";
 // import PacmanLoader from "react-spinners/PacmanLoader";
 
 import './ItemContainer.css';
@@ -9,7 +10,7 @@ import { useEffect, useState } from "react";
 function ItemContainer({ category }) {
 
     // 1. Definir mi endpoint o url base para solicitar la lista productos
-    const url = "https://run.mocky.io/v3/1ca302e2-1551-499a-8cf3-9db2e1f2cf22";
+    // const url = "https://run.mocky.io/v3/1ca302e2-1551-499a-8cf3-9db2e1f2cf22";
 
     // 2. Definir un estado para guardar los productos que me devuelve la API
     const [ products, setProducts ] = useState([]);
@@ -17,7 +18,7 @@ function ItemContainer({ category }) {
     // 3. Definir una función que se encargue de hacer el fetch a la API y guardar los productos en el estado
     const getProducts = async () => {
         try{
-            const response = await fetch(url);
+            const response = await fetch(environments.productsUrl);
             const data = await response.json();
             setProducts(data);
         }catch(err){
@@ -27,7 +28,7 @@ function ItemContainer({ category }) {
 
     const getProductsByCategory = async () => {
         try{
-            const response = await fetch(url);
+            const response = await fetch(environments.productsUrl);
             const data = await response.json();
             const filteredProducts = data.filter( (prod)=> prod.type.toLowerCase() === category )
             setProducts(filteredProducts);
