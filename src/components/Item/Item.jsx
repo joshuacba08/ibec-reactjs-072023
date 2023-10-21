@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
 
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 import { Link } from 'react-router-dom';
 import './Item.css';
 
 function Item({ product }) {
+
+  const { addProduct } = useContext(CartContext);
+  
+  const onAdd = (qty) =>{
+    addProduct(product, qty);
+  }
 
   return (
     <article className="product-card">
@@ -15,7 +23,7 @@ function Item({ product }) {
 
       <span className="product-card__name">${product.price}</span>
 
-      <ItemCount stock={product.stock} initial={1} />
+      <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
     </article>
   );
 }

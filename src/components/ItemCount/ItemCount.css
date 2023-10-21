@@ -5,6 +5,9 @@
 }
 
 .button-count{
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
     color: var(--primary-color);
     padding: 0 5px;
     background: none;
@@ -27,6 +30,11 @@
 }
 
 .box-qty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
     background-color: var(--just-white);
     color: var(--primary-color);
     padding: 0 5px;
