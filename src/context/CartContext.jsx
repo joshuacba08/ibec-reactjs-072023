@@ -11,17 +11,18 @@ const CartProvider = ({ children }) => {
   const [totalItems, setTotalItems] = useState(0);
 
   const calculateTotalItems = () => {
-
+    
     if(cart.length === 0){ // si el carrito esta vacio, seteamos el total de items en 0 y el precio total en 0
       setTotalItems(0);
       setTotal(0);
       return;
     }
-
+    
     const totalItems = cart.reduce( (acc, value)=> acc + value.qty , 0 );
-
-    // TODO: calcular el precio total del carrito
+    const totalPrice = cart.reduce( (acc, value)=> acc + value.price * value.qty, 0 )
     setTotalItems(totalItems);
+    setTotal(totalPrice);
+    localStorage.setItem('cart', JSON.stringify(cart));
 
   };
 
@@ -50,13 +51,29 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  const deleteProductById = (id) => {
+    // usando el metodo filter, creamos un nuevo carrito sin el producto que queremos eliminar
+    const newCart = cart.filter( prod => prod.id !== id );
+    // actualizamos el estado del carrito con el nuevo carrito
+    setCart(newCart);
+    localStorage.setItem('cart', JSON.stringify(newCart));
+  }
+
   const deleteCart = () => {
     setCart([]);
   };
 
   useEffect(() => {
     calculateTotalItems();
+
   }, [cart]);
+  
+  useEffect(() => {
+    const localCart = JSON.parse(localStorage.getItem('cart'));
+    if(localCart){
+      setCart(localCart);
+    }
+  }, []);
 
   return (
     // 4. retornamos el componente ContextProvider con el contexto creado y el children
@@ -65,6 +82,7 @@ const CartProvider = ({ children }) => {
         cart,
         addProduct,
         deleteCart,
+        deleteProductById,
         totalItems,
         total,
       }}

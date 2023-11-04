@@ -1,5 +1,6 @@
 .cart-widget{
     position: relative;
+    cursor: pointer;
 }
 
 .cart-widget__count{

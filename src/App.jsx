@@ -4,6 +4,7 @@ import Navbar from "./layouts/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import DetailProducts from "./pages/DetailProducts/DetailProducts";
+import Cart from "./pages/Cart/Cart";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
           </Route>
 
           <Route path="/detail/:id" element={<DetailProducts />} />
+          <Route path="/cart" element={<Cart />} />
+
         </Routes>
 
         {/* Aca iría un footer */}
