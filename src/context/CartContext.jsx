@@ -65,7 +65,6 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => {
     calculateTotalItems();
-
   }, [cart]);
   
   useEffect(() => {
