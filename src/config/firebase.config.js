@@ -1,5 +1,6 @@
 // importo la libreria firebase
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore/lite';
 
 // declaro la configuracion de firebase en un objeto
 const firebaseConfig = {
@@ -13,6 +14,6 @@ const firebaseConfig = {
 
 // inicializo firebase con la configuracion
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// exporto la constante app
-export default app;
+export default db;

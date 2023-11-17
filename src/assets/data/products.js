@@ -39,4 +39,30 @@ export const arrayProducts = [
     type: "Porter",
     id: 3,
   },
+  {
+    id: 4,
+    name: "DDH Transcen Dose",
+    price: 240,
+    image:
+      "https://kong-demo.myshopify.com/cdn/shop/products/p14_2000x.jpg?v=1597320386",
+    stock: 10,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+    size: "L",
+    vendor: "Marvelous Mugs",
+    type: "Stout",
+  },
+  {
+    id: 5,
+    name: "Opulent Ambrosia Dream",
+    price: 260,
+    image:
+      "https://kong-demo.myshopify.com/cdn/shop/products/p11_1477e4a3-53b1-473e-b815-c2bc89709140_2000x.jpg?v=1597296475",
+    stock: 15,
+    description:
+      "Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras...",
+    size: "L",
+    vendor: "Marvelous Mugs",
+    type: "Stout",
+  },
 ];

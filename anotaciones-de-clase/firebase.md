@@ -60,6 +60,8 @@ Vamos a copiar el código que nos brinda Firebase y lo vamos a pegar en un archi
 ```javascript
 // importo la libreria firebase
 import { initializeApp } from "firebase/app";
+// importo la libreria firestore
+import { getFirestore } from 'firebase/firestore/lite';
 
 // declaro la configuracion de firebase en un objeto
 const firebaseConfig = {
@@ -73,9 +75,9 @@ const firebaseConfig = {
 
 // inicializo firebase con la configuracion
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app); // inicializo firestore
 
-// exporto la constante app
-export default app;
+export default db; // exporto firestore
 ```
 
 ## Crear una colección en Firestore
@@ -124,3 +126,20 @@ También se les conoce como ABM (Alta, Baja y Modificación).
 
 Vamos a crear nuestro sistema de CRUD en Firestore usando una serie de métodos que nos brinda Firebase a los cuales le añadiremos la lógica necesaria para que funcionen correctamente.
 
+
+Vamos a crear un archivo llamado `firesotre.js` dentro de una carpeta llamada `utils` dentro de la carpeta `src`.
+
+```javascript
+//Crear nuestras funciones para interactuar con Firestore
+
+import db from '../config/firebase.config'; // importo la configuracion de firestore
+
+```
+
+### Crear un documento en Firestore
+
+Llego la hora de crear un documento en nuestra colección `products` de Firestore.
+
+```javascript
+
+```
