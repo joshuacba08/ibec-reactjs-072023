@@ -6,6 +6,7 @@ import environments from "../../environments/environments";
 
 import './ItemContainer.css';
 import { useEffect, useState } from "react";
+import { getItems } from "../../utils/firestore";
 
 function ItemContainer({ category }) {
 
@@ -18,8 +19,9 @@ function ItemContainer({ category }) {
     // 3. Definir una función que se encargue de hacer el fetch a la API y guardar los productos en el estado
     const getProducts = async () => {
         try{
-            const response = await fetch(environments.productsUrl);
-            const data = await response.json();
+            // const response = await fetch(environments.productsUrl);
+            // const data = await response.json();
+            const data = await getItems('products');
             setProducts(data);
         }catch(err){
             console.error(err);
@@ -28,8 +30,9 @@ function ItemContainer({ category }) {
 
     const getProductsByCategory = async () => {
         try{
-            const response = await fetch(environments.productsUrl);
-            const data = await response.json();
+            // const response = await fetch(environments.productsUrl);
+            // const data = await response.json();
+            const data = await getItems('products');
             const filteredProducts = data.filter( (prod)=> prod.type.toLowerCase() === category )
             setProducts(filteredProducts);
         }catch(err){

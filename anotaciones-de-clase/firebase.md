@@ -141,5 +141,99 @@ import db from '../config/firebase.config'; // importo la configuracion de fires
 Llego la hora de crear un documento en nuestra colección `products` de Firestore.
 
 ```javascript
+//Crear nuestras funciones para interactuar con Firestore
+import db from "../config/firebase.config"; // importo la configuracion de firestore
+
+import { collection, addDoc } from "firebase/firestore/lite"; // importo las funciones que voy a utilizar de firestore
+
+// CREATE - Agregar un documento
+//Esta función recibe el objeto que quiero agregar como nuevo documento de mi colección y como segundo parámetro el nombre de mi colección a la que agregaré el nuevo documento.
+
+export const createItem = async (obj, nameCollection) => {
+  try {
+    const colRef = collection(db, nameCollection); // creo una referencia a la coleccion
+    const data = await addDoc(colRef, obj); // agrego el nuevo documento a la coleccion
+    return data.id; // retorno el id del documento creado
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 ```
+
+### Sembrar datos en Firestore
+
+Muchas veces necesitamos tener datos de prueba en nuestra base de datos para poder probar nuestro sistema. Para esto vamos a crear una funcion llamada `seedData`.
+
+```javascript
+/* -------------------------- Funciones de soporte -------------------------- */
+
+
+// Seed de datos - Agregar documentos a una colección de Firestore de forma automatizada
+
+export const seedData = async(arrayItems, nameCollection) => {
+    try {
+        arrayItems.forEach( async (item) => { // recorro el array de objetos y por cada uno de ellos ejecuto la funcion createItem
+            await createItem(item, nameCollection) // ejecuto la funcion createItem con el objeto y el nombre de la coleccion
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+En el archivo `main.js` vamos a importar la configuración de Firestore:
+
+```javascript
+import db from './config/firebase.config.js'
+```
+
+y vamos a implementar el siguiente script en la parte final del archivo firebase.config.js:
+
+```javascript
+// importo la libreria firebase
+import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore/lite';
+import { seedData } from "../utils/firestore"; // importo la funcion seedData que me permite agregar datos a la base de datos de firestore de forma automatizada
+import { arrayProducts } from "../assets/data/products"; // importo el array de objetos que quiero agregar a la base de datos de firestore
+
+// declaro la configuracion de firebase en un objeto
+const firebaseConfig = {
+  apiKey: "AIzaSyDjPb1h9Giz5ECJ8uRqLZs3G3jl5p3e0DY",
+  authDomain: "kong-beer.firebaseapp.com",
+  projectId: "kong-beer",
+  storageBucket: "kong-beer.appspot.com",
+  messagingSenderId: "685782753883",
+  appId: "1:685782753883:web:8922d55a102939179d157e"
+};
+
+// inicializo firebase con la configuracion
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export default db;
+
+
+// correr este bloque solo cuando quiera agregar datos a la base de datos de firestore de forma automatizada
+const force = false;
+if(force){
+  
+  setTimeout(()=>{
+    seedData(arrayProducts, "products"); // ejecuto la funcion seedData con el array de objetos y el nombre de la coleccion
+  }, 4000)
+
+}
+```
+
+* **Nota:** El script anterior lo vamos a ejecutar una sola vez para agregar los datos de prueba a nuestra base de datos de Firestore.
+* **setTimeout:** Es una función que nos permite ejecutar una función después de un tiempo determinado. En este caso, vamos a ejecutar la función `seedData` después de 4 segundos.
+* **force:** Es una variable que nos permite ejecutar el script de forma manual. Cuando la variable `force` sea `true` se ejecutará el script y cuando sea `false` no se ejecutará.
+* **arrayProducts:** Es un array de objetos que contiene los datos de prueba que vamos a agregar a nuestra base de datos de Firestore.
+* **products:** Es el nombre de la colección a la que vamos a agregar los datos de prueba.
+* **seedData:** Es una función que nos permite agregar datos a nuestra base de datos de Firestore de forma automatizada.
+* **createItem:** Es una función que nos permite agregar un documento a nuestra base de datos de Firestore.
+
+
+### Leer documentos en Firestore
+
+

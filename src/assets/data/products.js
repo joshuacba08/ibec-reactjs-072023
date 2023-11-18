@@ -1,7 +1,6 @@
 // este archivo es para simular una base de datos de los productos de nuestro ecommerce
 export const arrayProducts = [
   {
-    id: 1,
     price: 240,
     name: "Sublime Hope Dose",
     description:
@@ -24,7 +23,6 @@ export const arrayProducts = [
     size: "L",
     vendor: "Bubbling Brews",
     type: "Porter",
-    id: 2,
   },
   {
     name: "Curious Tiki Aura",
@@ -37,10 +35,8 @@ export const arrayProducts = [
     size: "L",
     vendor: "Bubbling Brews",
     type: "Porter",
-    id: 3,
   },
   {
-    id: 4,
     name: "DDH Transcen Dose",
     price: 240,
     image:
@@ -53,7 +49,6 @@ export const arrayProducts = [
     type: "Stout",
   },
   {
-    id: 5,
     name: "Opulent Ambrosia Dream",
     price: 260,
     image:
